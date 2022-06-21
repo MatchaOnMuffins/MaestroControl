@@ -8,6 +8,5 @@ BOOST_PYTHON_MODULE (libMaestroControl) {
             .def("setPosition", &MaestroControl::setPosition)
             .def("getPosition", &MaestroControl::getPosition)
             .def("getSerialPort", &MaestroControl::getSerialPort)
-            .def("reconnect", &MaestroControl::reconnect)
             .def("destroy", &MaestroControl::destroy);
 };

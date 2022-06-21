@@ -69,16 +69,18 @@ from libMaestroControl import MaestroControl
 # Instructions can be found here: https://www.pololu.com/product/1356/resources
 if __name__ == "__main__":
     # Create a new MaestroControl object and initialize it
-    # The parameter is the serial port of the Servo Controller (usually /dev/cu.usbmodem001033281 or /dev/ttyACM0)
-    # Sometimes, two serial ports can be found in the /dev/ folder, so you may need to try both and see which one works.
+    # The parameter is the serial port of the Servo Controller
     # This can be found by using the "ls /dev" command in the terminal
+    # Usually /dev/cu.usbmodem001033281 on MacOS, /dev/ttyACM0 on Linux, and \\\\.\\COM6 on Windows
+    # Sometimes, two serial ports can be found in the /dev/ folder, so you may need to try both and see which one works.
     control = MaestroControl("/dev/cu.usbmodem001033281")
     # A servo can be set to any position between 4000 and 8000
     # Syntax: control.setPosition(servo channel, position)
     control.setPosition(0, 4000)  # Set channel 0 servo position to 4000
+    print(control.getPosition(0))  # prints the current position of the servo on channel 0 (4000)
     time.sleep(1)  # Wait for 1 second (required because the servo needs time to move to the new position)
     control.setPosition(0, 8000)  # Set channel 0 servo position to 8000
-    print(control.getPosition(0))  # prints the current position of the servo on channel 0 (4000)
+    print(control.getPosition(0))  # prints the current position of the servo on channel 0 (8000)
     control.getSerialPort()  # returns the serial port of the servo controller
     control.destroy()  # closes the connection to the servo controller
 ```

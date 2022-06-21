@@ -4,7 +4,6 @@ project("MaestroControl")
 find_package(PythonLibs 3.9 REQUIRED)
 find_package(Boost COMPONENTS python REQUIRED)
 
-# Without this, any build libraries automatically have names "lib{x}.so"
 add_library(MaestroControl MODULE lib.cpp)
 
 # Set up the libraries and header search paths for this target

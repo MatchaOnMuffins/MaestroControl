@@ -3,14 +3,13 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <unistd.h>
 
 #ifdef _WIN32
 #define O_NOCTTY 0
 #include <Windows.h>
 #else
-
-#include <unistd.h>
-
+#include <termios.h>
 #endif
 
 class MaestroControl {
