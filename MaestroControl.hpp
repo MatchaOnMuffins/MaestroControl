@@ -28,13 +28,13 @@ public:
         fd = open(device, O_RDWR | O_NOCTTY);
     }
 
-    std::string toString() {
+    std::string getSerialPort() {
         std::ostringstream buffer;
         buffer << device;
         return buffer.str();
     }
 
-    int SetTarget(unsigned char channel, unsigned short target) {
+    int setPosition(unsigned char channel, unsigned short target) {
         unsigned char command[] = {0x84, channel, static_cast<unsigned char>(target & 0x7F),
                                    static_cast<unsigned char>(target >> 7 & 0x7F)};
         if (write(fd, command, sizeof(command)) == -1) {
@@ -45,7 +45,7 @@ public:
         return 0;
     }
 
-    int GetPosition(unsigned char channel) {
+    int getPosition(unsigned char channel) {
         unsigned char command[] = {0x90, channel};
         if (write(fd, command, sizeof(command)) == -1) {
             reconnect();
