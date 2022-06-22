@@ -1,4 +1,4 @@
-#include "MaestroControl.hpp"
+#include "MaestroControl.h"
 #include <boost/python.hpp>
 
 using namespace boost::python;

@@ -13,6 +13,20 @@
 #include <termios.h>
 
 #endif
+/**
+ * @brief The MaestroControl class
+ *
+ * This class is used to control the Maestro Servo Controller.
+ * It can be called in Python with the following code:
+ * @code
+ * import MaestroControl
+ * mc = MaestroControl.MaestroControl("/dev/ttyACM0")
+ * mc.setPosition(0, 4000)
+ * mc.setPosition(1, 8000)
+ * @endcode
+ * @author MatchaOnMuffins
+ * @date   06-22-2022
+ **/
 
 class MaestroControl {
 private:
@@ -21,7 +35,7 @@ private:
 public:
 
     /**
-     * @brief MaestroControl constructor
+     * @brief Constructor for MaestroControl
      * @param dev device name (e.g. /dev/ttyACM0)
      */
 
@@ -32,6 +46,8 @@ public:
 
     /**
      * @brief Reconnects if connection is lost
+     *
+     * Should only be used internally by the MaestroControl class itself.
      */
 
     void reconnect() {
@@ -40,7 +56,7 @@ public:
     }
 
     /**
-     * @brief Returns the serial port name
+     * @brief Returns the name of the serial port.
      * @return Serial port name (e.g. /dev/ttyACM0)
      */
 
@@ -53,8 +69,8 @@ public:
     /**
     * @brief Sets position of servo to given value
     * @param channel channel number
-    * @param position servo position (4000-8000)
-    * @return -1 if an error occurred else 0 if successful
+    * @param target servo position (4000-8000)
+    * @return -1 if an error occurred, 0 if successful
     */
 
     int setPosition(unsigned char channel, unsigned short target) {
@@ -69,7 +85,9 @@ public:
     }
 
     /**
-     * @brief Gets position of servo
+     * @brief Gets position of connected servo on channel given
+     *
+     * Will only return a number from 4000-8000 or -1 if an error occurred.
      * @param channel channel number
      * @return position of servo, or -1 if error
      */
@@ -94,6 +112,8 @@ public:
 
     /**
      * @brief Destructor
+     *
+     * Disconnects from serial port
      */
     void destroy() const {
         close(fd);
