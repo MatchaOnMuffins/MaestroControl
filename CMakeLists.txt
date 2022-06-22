@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.22)
 project("MaestroControl")
 # Find python and Boost - both are required dependencies
-find_package(PythonLibs 3.9 REQUIRED)
+find_package(PythonLibs 3.10 REQUIRED)
 find_package(Boost COMPONENTS python REQUIRED)
 
 add_library(MaestroControl MODULE lib.cpp)
